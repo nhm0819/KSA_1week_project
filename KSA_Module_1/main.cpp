@@ -1,19 +1,19 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "Student.h"
-
 
 void print_info(Student);
 void search(Student *student, char input[20], int option);
 
-
 int main(void)
 {
-	int ch;
-	FILE* fp;
 
 	Student students[25];
+	FILE* fp;
+	int size = 25;
+
+
+//// File Read
 
 	fopen_s(&fp, "D:\\1week\\students.txt", "r");
 
@@ -23,7 +23,7 @@ int main(void)
 	}
 	printf("교육생 검색 프로그램\n\n");
 
-	for (int count = 0; count < 25; count++) {
+	for (int count = 0; count < size; count++) {
 		fscanf_s(fp, "%s", &students[count].company, 80);
 		fscanf_s(fp, "%s", &students[count].name, 10);
 		fscanf_s(fp, "%s", &students[count].sex, 10);
@@ -33,6 +33,8 @@ int main(void)
 		fscanf_s(fp, "%s", &students[count].major, 80);
 	}
 
+
+//// Search 
 	char input[20];
 	int option = 0;
 	int loop = 1;
@@ -72,7 +74,7 @@ int main(void)
 
 		gets_s(input);
 
-		for (int i = 0; i < 25; i++) {
+		for (int i = 0; i < size; i++) {
 			search(&students[i], input, option);
 		}
 		option = 0;
@@ -90,7 +92,6 @@ int main(void)
 
 void print_info(Student *student)
 {
-
 	printf("----------------------------------------------\n");
 	printf("%s\n", student->name);
 	printf("%s\n", student->company);
@@ -99,7 +100,6 @@ void print_info(Student *student)
 	printf("%s\n", student->mail);
 	printf("%d\n", student->birth);
 	printf("%s\n", student->major);
-	
 }
 
 void search(Student *student, char input[20], int option) {
@@ -109,21 +109,5 @@ void search(Student *student, char input[20], int option) {
 		{
 			print_info(student);
 		}
-	}
-	else if (option == 2) {
-		if (strcmp(input, student->name) == 0)
-		{
-			print_info(student);
-		}
-	}
-	else if (option == 3) {
-		if (strcmp(input, student->sex) == 0)
-		{
-			print_info(student);
-		}
-	}
-
-	else {
-		printf("결과값이 없습니다.");
 	}
 }
