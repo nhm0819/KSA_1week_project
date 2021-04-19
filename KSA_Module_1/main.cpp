@@ -9,6 +9,10 @@ int main(void)
 {
 
 	Student students[25];
+	//To-Do : Dynamic Allocation
+	//Student* ps = (Student *)malloc((25 * sizeof(Student));
+	//free(ps);
+
 	FILE* fp;
 	int size = 25;
 
@@ -86,10 +90,6 @@ int main(void)
 }
 
 
-//Student* ps = (Student *)malloc((25 * sizeof(Student));
-//free(ps);
-
-
 void print_info(Student *student)
 {
 	printf("----------------------------------------------\n");
@@ -110,4 +110,20 @@ void search(Student *student, char input[20], int option) {
 			print_info(student);
 		}
 	}
+	else if (option == 2) {
+		if (strcmp(input, student->name) == 0)
+		{
+			print_info(student);
+		}
+	}
+	else if (option == 3) {
+		if (strcmp(input, student->sex) == 0)
+		{
+			print_info(student);
+		}
+	}
+	else {
+		printf("");
+	}
+
 }
